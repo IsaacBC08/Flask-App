@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block customCSS %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<meta name="theme-color" content="#7952b3">
+{% endblock %}
+
+
+{% block body %}
+
+<main class="form-signin">
+    <form class="form-signin" action="/login" method="POST">
+      <img class="mb-4 container" src="{{ url_for('static', filename='img/py.png') }}" alt="" width="110" height="100">
+      {% with messages = get_flashed_messages() %}
+
+      {% if messages %}
+      <br>
+      {% for messages in messages %}
+      <div class="alert alert-danger alert-dismissible" role="alert">
+        <br>
+        <strong>{{ messages }}<br></strong>
+        <br>
+        
+        <button type="button" class="btn-close btn-primary" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+
+      {% endif %}
+
+      {% endwith %}
+      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="Username" name="Username" placeholder="José">
+        <label for="Username">Username</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="Password" name="password" placeholder="Password">
+        <label for="Password">Password</label>
+      </div>
+      
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar Seción</button>
+      <a class="w-100 btn btn-lg btn-primary my-2" href="{{ url_for('registro') }}">Registrarse</a>
+      <p class="mt-5 mb-3 text-muted">&copy; 2023–2023</p>
+    </form>
+</main>
+  
+{% endblock %}
